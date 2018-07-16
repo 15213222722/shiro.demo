@@ -13,10 +13,15 @@
 	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 	">
 	<!-- 引入属性文件 -->
+	<!-- 用来处理系统配置文件并且具有将spring配置文件中的以${properties}的形式替换成key为properties的value -->
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<!-- systemPropertiesModeName是用来指示后面的配置文件中的值是否会覆盖前面的值默认情况下如果配置文件中有不能解析的占位符则会抛出异常 -->
 		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+		<!-- ignoreResourceNotFound用来指示如果文件找不到则忽略 -->
 		<property name="ignoreResourceNotFound" value="true" />
+		<!-- ignoreUnresolvablePlaceholders用来指示忽略此异常 -->
+		<!-- <property name="ignoreUnresolvablePlaceholders" value="true" /> -->
 		<property name="locations">
 			<list>
 				<value>classpath:jdbc.properties</value>

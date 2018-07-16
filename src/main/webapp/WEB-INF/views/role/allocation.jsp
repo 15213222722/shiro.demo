@@ -179,7 +179,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<input type="hidden" id="selectUserId">
 						<tr>
 							<th width="5%"><input type="checkbox" id="checkAll"/></th>
-							<th width="10%">用户昵称</th>
+							<th width="10%">用户昵称
 							<th width="10%">Email/帐号</th>
 							<th width="10%">状态</th>
 							<th width="55%">拥有的角色</th>

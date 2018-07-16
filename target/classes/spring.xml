@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	">
+	<!-- 引入属性文件 -->
+	<!-- 用来处理系统配置文件并且具有将spring配置文件中的以${properties}的形式替换成key为properties的value -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<!-- systemPropertiesModeName是用来指示后面的配置文件中的值是否会覆盖前面的值默认情况下如果配置文件中有不能解析的占位符则会抛出异常 -->
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+		<!-- ignoreResourceNotFound用来指示如果文件找不到则忽略 -->
+		<property name="ignoreResourceNotFound" value="true" />
+		<!-- ignoreUnresolvablePlaceholders用来指示忽略此异常 -->
+		<!-- <property name="ignoreUnresolvablePlaceholders" value="true" /> -->
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>
+				<value>classpath:config.properties</value>
+				<value>classpath:shiro-config.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<import resource="spring-mybatis.xml"/>
+	<import resource="spring-cache.xml"/>
+	<import resource="spring-shiro.xml"/>
+	<!-- 定时任务，运行去掉
+	<import resource="spring-timer.xml"/>
+	 -->
+</beans>
